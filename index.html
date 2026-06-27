@@ -153,9 +153,13 @@
 
         .gallery-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-        .gallery-player { width: 100%; height: 100%; background: #000; position: relative; pointer-events: none; }
-        .gallery-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; filter: brightness(0.6); transition: filter 0.3s; }
-        .gallery-card:hover .gallery-player iframe { filter: brightness(0.85); }
+        /* Optimized Image Thumbnail Setup */
+        .gallery-player { width: 100%; height: 100%; background: #000; position: relative; pointer-events: none; overflow: hidden; }
+        .gallery-player img { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; filter: brightness(0.5); transition: filter 0.4s, transform 0.4s ease-out; 
+        }
+        .gallery-card:hover .gallery-player img { filter: brightness(0.85); transform: scale(1.05); }
 
         .play-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -325,7 +329,7 @@
                 </div>
             </div>
         </div>
-    </div> <!-- Close main container before full-width gallery -->
+    </div> 
 
     <section class="gallery-section" id="galleryPin">
         <div class="container" style="padding-bottom: 40px;">
@@ -334,58 +338,58 @@
         
         <div class="gallery-track" id="galleryTrack">
             
-            <!-- Landscape Cinematic Projects -->
+            <!-- Landscape Cinematic Projects (Optimized Thumbnails) -->
             <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/55yPfMcPPDU?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/55yPfMcPPDU" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/55yPfMcPPDU/maxresdefault.jpg" alt="Primalkin Teaser"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>Primalkin Teaser</h3></div>
             </div>
 
             <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/B6jQdrgEv1o?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/B6jQdrgEv1o" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/B6jQdrgEv1o/maxresdefault.jpg" alt="Subnautica Live-Action"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>Subnautica Live-Action</h3></div>
             </div>
 
             <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/FBE_RxvuYdk?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/FBE_RxvuYdk" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/FBE_RxvuYdk/maxresdefault.jpg" alt="Batik World"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>Batik World</h3></div>
             </div>
 
             <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/dWr9GAVZuUc?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/dWr9GAVZuUc" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/dWr9GAVZuUc/maxresdefault.jpg" alt="Mother Knows"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>Mother Knows (New Merry Bakery)</h3></div>
             </div>
             
-            <!-- Vertical / Shorts (9:16) Projects -->
+            <!-- Vertical / Shorts (9:16) Projects (Optimized Thumbnails) -->
             <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/wMsyjJrMc-0?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/wMsyjJrMc-0" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/wMsyjJrMc-0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/wMsyjJrMc-0/hqdefault.jpg'" alt="SUPER ZERO: The Anomaly"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>SUPER ZERO: "The Anomaly"</h3></div>
             </div>
             
             <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/c3aG3GMQnKo?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/c3aG3GMQnKo" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/c3aG3GMQnKo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/c3aG3GMQnKo/hqdefault.jpg'" alt="SUPER ZERO: Pyre"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>SUPER ZERO: "Pyre"</h3></div>
             </div>
             
             <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/rFAtUEbxtJU?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/rFAtUEbxtJU" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/rFAtUEbxtJU/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/rFAtUEbxtJU/hqdefault.jpg'" alt="Pregnant By The Werewolf Alpha"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>Pregnant By The Werewolf Alpha</h3></div>
             </div>
             
             <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/TebSUUc_Ou8?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/TebSUUc_Ou8" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/TebSUUc_Ou8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TebSUUc_Ou8/hqdefault.jpg'" alt="REBUTAN NASTAR! CNY 2026"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>REBUTAN NASTAR! CNY 2026</h3></div>
             </div>
             
             <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/y6aJddCy0ps?autoplay=1">
-                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/y6aJddCy0ps" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="gallery-player"><img src="https://img.youtube.com/vi/y6aJddCy0ps/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/y6aJddCy0ps/hqdefault.jpg'" alt="Taste Like It Used To Be"></div>
                 <div class="play-icon"></div>
                 <div class="gallery-hover-overlay"><h3>Taste Like It Used To Be</h3></div>
             </div>
@@ -515,7 +519,7 @@
                     end: () => `+=${getScrollAmount()}`,
                     pin: true,
                     animation: tween,
-                    scrub: 1.5, // 1.5 gives it that smooth, heavy inertia feel
+                    scrub: 1.5, 
                     invalidateOnRefresh: true
                 });
             }
