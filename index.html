@@ -123,19 +123,37 @@
         .timeline-content ul { list-style-position: outside; margin-left: 20px; color: var(--text-dim); font-size: 14px; line-height: 1.6; }
         .timeline-content li { margin-bottom: 8px; }
 
-        /* --- GALLERY GRID & HOVER SYSTEM --- */
-        .gallery-section { padding: 80px 0; border-top: 1px solid var(--border-subtle); }
-        .gallery-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px;}
-        @media(min-width: 768px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+        /* --- GALLERY GRID & HOVER SYSTEM (GSAP INERTIA SCROLL) --- */
+        .gallery-section { 
+            padding: 100px 0; 
+            border-top: 1px solid var(--border-subtle); 
+            overflow: hidden;
+            background: var(--bg-pure);
+        }
+        
+        .gallery-track { 
+            display: flex; 
+            gap: 40px; 
+            width: max-content; 
+            padding: 0 5vw; 
+            align-items: center;
+        }
 
         .gallery-card {
             background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px;
             overflow: hidden; position: relative; transition: border-color 0.3s, transform 0.3s; cursor: pointer;
+            flex-shrink: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
+        
+        /* Landscape 16:9 Video Cards */
+        .gallery-card.landscape { width: 65vw; max-width: 800px; aspect-ratio: 16 / 9; }
+        /* Portrait 9:16 Video Cards */
+        .gallery-card.portrait { width: 35vw; max-width: 400px; aspect-ratio: 9 / 16; }
+
         .gallery-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-        /* Modified for iframes */
-        .gallery-player { width: 100%; aspect-ratio: 16 / 9; background: #000; position: relative; pointer-events: none; overflow: hidden; }
+        .gallery-player { width: 100%; height: 100%; background: #000; position: relative; pointer-events: none; }
         .gallery-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; filter: brightness(0.6); transition: filter 0.3s; }
         .gallery-card:hover .gallery-player iframe { filter: brightness(0.85); }
 
@@ -171,7 +189,7 @@
         .process-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.02); }
         
         .process-step { font-family: var(--font-mono); font-size: 2rem; color: var(--border-subtle); font-weight: 700; margin-bottom: 20px; transition: color 0.3s;}
-        .process-card:hover .process-step { color: var(--accent-glow); }
+        .process-card:hover .process-step { color: var(--accent); }
         .process-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
         .process-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
 
@@ -203,7 +221,7 @@
             background-color: rgba(0,0,0,0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         }
         .modal-content {
-            position: relative; margin: 3% auto; padding: 0; width: 90%; max-width: 1200px; height: 80vh;
+            position: relative; margin: 3% auto; padding: 0; width: 90%; max-width: 1200px; height: 85vh;
             border-radius: 12px; display: flex; justify-content: center; align-items: center;
         }
         .modal-content iframe { width: 100%; height: 100%; outline: none; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); background: #000; border: none;}
@@ -307,36 +325,76 @@
                 </div>
             </div>
         </div>
+    </div> <!-- Close main container before full-width gallery -->
 
-        <section class="gallery-section reveal-section">
+    <section class="gallery-section" id="galleryPin">
+        <div class="container" style="padding-bottom: 40px;">
             <div class="section-heading">03 // Production Gallery</div>
+        </div>
+        
+        <div class="gallery-track" id="galleryTrack">
             
-            <div class="gallery-grid">
-                <div class="gallery-card" data-video="https://drive.google.com/file/d/1DKd-GyDvi7c-A_QBqmcqdSUYyb4n3Td0/preview">
-                    <div class="gallery-player"><iframe src="https://drive.google.com/file/d/1DKd-GyDvi7c-A_QBqmcqdSUYyb4n3Td0/preview" allow="autoplay"></iframe></div>
-                    <div class="play-icon"></div>
-                    <div class="gallery-hover-overlay"><h3>Primalkin Teaser</h3></div>
-                </div>
-
-                <div class="gallery-card" data-video="https://drive.google.com/file/d/13vt5XXEAHutCuTVj0-QPmbxteznPqp_D/preview">
-                    <div class="gallery-player"><iframe src="https://drive.google.com/file/d/13vt5XXEAHutCuTVj0-QPmbxteznPqp_D/preview" allow="autoplay"></iframe></div>
-                    <div class="play-icon"></div>
-                    <div class="gallery-hover-overlay"><h3>Subnautica Live-Action</h3></div>
-                </div>
-
-                <div class="gallery-card" data-video="https://drive.google.com/file/d/1jGKsagl4wAf3TsH8eRkNt4xu2SL1w0Zw/preview">
-                    <div class="gallery-player"><iframe src="https://drive.google.com/file/d/1jGKsagl4wAf3TsH8eRkNt4xu2SL1w0Zw/preview" allow="autoplay"></iframe></div>
-                    <div class="play-icon"></div>
-                    <div class="gallery-hover-overlay"><h3>Batik World</h3></div>
-                </div>
-
-                <div class="gallery-card" data-video="https://drive.google.com/file/d/13nyjQaB0369OcH85MzRz5gD_Ufcs6kzx/preview">
-                    <div class="gallery-player"><iframe src="https://drive.google.com/file/d/13nyjQaB0369OcH85MzRz5gD_Ufcs6kzx/preview" allow="autoplay"></iframe></div>
-                    <div class="play-icon"></div>
-                    <div class="gallery-hover-overlay"><h3>Mother Knows (New Merry Bakery)</h3></div>
-                </div>
+            <!-- Landscape Cinematic Projects -->
+            <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/55yPfMcPPDU?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/55yPfMcPPDU" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>Primalkin Teaser</h3></div>
             </div>
-        </section>
+
+            <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/B6jQdrgEv1o?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/B6jQdrgEv1o" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>Subnautica Live-Action</h3></div>
+            </div>
+
+            <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/FBE_RxvuYdk?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/FBE_RxvuYdk" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>Batik World</h3></div>
+            </div>
+
+            <div class="gallery-card landscape" data-video="https://www.youtube.com/embed/dWr9GAVZuUc?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/dWr9GAVZuUc" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>Mother Knows (New Merry Bakery)</h3></div>
+            </div>
+            
+            <!-- Vertical / Shorts (9:16) Projects -->
+            <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/TebSUUc_Ou8?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/TebSUUc_Ou8" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>SUPER ZERO: "The Anomaly"</h3></div>
+            </div>
+            
+            <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/c3aG3GMQnKo?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/c3aG3GMQnKo" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>SUPER ZERO: "Pyre"</h3></div>
+            </div>
+            
+            <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/rFAtUEbxtJU?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/rFAtUEbxtJU" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>Pregnant By The Werewolf Alpha</h3></div>
+            </div>
+            
+            <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/TebSUUc_Ou8?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/TebSUUc_Ou8" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>REBUTAN NASTAR! CNY 2026</h3></div>
+            </div>
+            
+            <div class="gallery-card portrait" data-video="https://www.youtube.com/embed/y6aJddCy0ps?autoplay=1">
+                <div class="gallery-player"><iframe src="https://www.youtube.com/embed/y6aJddCy0ps" allow="autoplay" tabindex="-1"></iframe></div>
+                <div class="play-icon"></div>
+                <div class="gallery-hover-overlay"><h3>Taste Like It Used To Be</h3></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reopen Container for remaining sections -->
+    <div class="container">
 
         <section class="process-section reveal-section">
             <div class="section-heading">04 // Production Pipeline</div>
@@ -420,6 +478,7 @@
             .to("#headerVideoFrame", { opacity: 1, duration: 2, ease: "power2.out" }, "-=1");
 
             setupScrollAnimations();
+            setupGalleryScroll();
             setupParallax();
             setupModal();
         }
@@ -435,7 +494,34 @@
             });
         }
 
-        // 4. Parallax Background
+        // 4. GSAP Horizontal Gallery Scroll (Inertia effect via Scrub)
+        function setupGalleryScroll() {
+            const track = document.getElementById("galleryTrack");
+            if (track) {
+                // Calculate how far to scroll the track to the left
+                let getScrollAmount = () => {
+                    let trackWidth = track.scrollWidth;
+                    return trackWidth - window.innerWidth + (window.innerWidth * 0.1); 
+                };
+
+                const tween = gsap.to(track, {
+                    x: () => -getScrollAmount(),
+                    ease: "none"
+                });
+
+                ScrollTrigger.create({
+                    trigger: "#galleryPin",
+                    start: "top 15%",
+                    end: () => `+=${getScrollAmount()}`,
+                    pin: true,
+                    animation: tween,
+                    scrub: 1.5, // 1.5 gives it that smooth, heavy inertia feel
+                    invalidateOnRefresh: true
+                });
+            }
+        }
+
+        // 5. Parallax Background
         function setupParallax() {
             document.addEventListener('mousemove', (e) => {
                 const moveX = (e.clientX - window.innerWidth / 2) * 0.015;
@@ -444,7 +530,7 @@
             });
         }
 
-        // 5. Fullscreen Lightbox Modal System
+        // 6. Fullscreen Lightbox Modal System
         function setupModal() {
             const modal = document.getElementById("videoModal");
             const modalVideo = document.getElementById("modalVideo");
